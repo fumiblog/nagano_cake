@@ -4,16 +4,14 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   get 'homes/about' => 'homes#about'
-  get 'homes/top' => 'homes#top'
-  root 'homes#top'
+  get 'public/homes/top' => 'homes#top'
+
 
   scope 'admin' do
     resources :genres, only: [:index, :create, :edit, :update]
   end
 
-  scope 'admin' do
-    resources :items, except: [:destroy]
-  end
+  resources :items, except: [:destroy]
 
   scope 'admin' do
     resources :customers, only: [:index, :create, :edit, :update]

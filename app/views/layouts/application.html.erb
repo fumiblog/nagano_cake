@@ -13,17 +13,25 @@
     <header class="navbar navbar-fixed-top navbar-inverse">
       <div class="container">
         <nav class="nav navbar-nav navbar-left">
-          <span class="title">NaganoCake</span>
-            </nav>
-
-          </div>
-        </header>
+          <span class="title">長野ケーキ製作所</br>Nagano CakeCreation place</span>
+        </nav>
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "TOP", public_homes_top_path, {class: "glyphicon glyphicon-home home"} %></li>
+            <li><%= link_to "会員一覧", customers_path, {class: "glyphicon glyphicon-user user"} %></li>
+            <li><%= link_to "注文一覧", orders_path, {class: "glyphicon glyphicon-book book"} %></li>
+            <li><%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "glyphicon glyphicon-log-out log-out" %></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
     <%= yield %>
+
     <footer>
       <div class="container">
       	<div class="row">
         	<div class="col-xs-3 col-xs-offset-9">
-        		<p>CopyRight @fumiblog.inc</p>
+        		<p>CopyRight fumiblog.inc</p>
         	</div>
         </div>
       </div>

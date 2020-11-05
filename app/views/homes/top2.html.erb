@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-3" style="background-color: orange;">
+      <% if flash[:notice] %>
+      <p><%= flash[:notice] %></p>
+      <% end %>
+      <%= render 'homes/genre' %></br>
+    </div>
+    <h2>NaganoCakeHome</h2>
+    <div class="col-xs-9">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th></th>
+            <th>title</th>
+            <th>opinion</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <% @books.each do |book| %>
+            <td><%= attachment_image_tag current_user, :image, format: 'png', fallback: "no_image.jpg", size: "60x60" %></td>
+            <td><%= link_to book.title, book_path(book.id) %></td>
+            <td><%= book.body %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
