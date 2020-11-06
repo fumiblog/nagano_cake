@@ -11,10 +11,16 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :create, :edit, :update]
   end
 
+  scope 'admin' do
   resources :items, except: [:destroy]
+  end
 
   scope 'admin' do
     resources :customers, only: [:index, :create, :edit, :update]
+  end
+
+  scope 'public' do
+    resources :customers, only: [:new, :create]
   end
 
   scope 'admin' do

@@ -2,19 +2,19 @@ class GenresController < ApplicationController
 
   def index
     @genres = Genre.all
-    # @genre = Genre.new(genre_params)
+    @genre = Genre.new
     # binding.pry
   end
 
   def create
-    @genre = Genre.new(params[:id])
+    @genre = Genre.new(genre_params)  #ユーザーが入力した値
     # binding.pry
-    @genre.save(genre_params)
+    @genre.save
     redirect_to genres_path
   end
 
   def edit
-    @genre = Genre.find(params[:id])
+    @genre = Genre.find(params[:id])  #探した値
   end
 
   def update
