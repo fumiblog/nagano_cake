@@ -1,42 +1,36 @@
 <div class="container">
+  <header>
+    <div class="function_title">
+      <h2>新規会員登録</h2>
+    </div>
+  </header>
   <div class="row">
-    <header>
-      <div class="function_title">
-        <h2>新規会員登録</h2>
-      </div>
-    </header>
-    <div class="col-xs-5">
-      <%= form_with model:@item, local:true do |f| %>
-
-      <div class="form-group has-icon">
-        <%= attachment_image_tag @item, :image, format: 'jpg', fallback: "no_image.jpg", size: "200x200" %>
-        <%= f.attachment_field :image %>
-      </div>
+    <%= form_with model: @customer, local: true do |f| %>
+    <div class=col-xs-3>
+      <th>名前</th></br>
+      <th>フリガナ</th></br>
+      <th>メールアドレス</th></br>
+      <th>郵便番号（ハイフン無し）</th></br>
+      <th>住所</th></br>
+      <th>電話番号（ハイフン無し）</th></br>
+      <th>パスワード（６桁以上）</th></br>
+      <th>パスワード（確認用）</th></br>
     </div>
-    <div class="col-xs-7">
-      <div class="row">
-        <div class="col-xs-4">商品名</div>
-        <div class="col-xs-8"><%= f.text_field :name %></div>
-      </div>
-      <div class="row">
-        <div class="col-xs-4">商品説明</div>
-        <div class="col-xs-8"><%= f.text_field :introduction %></div>
-      </div>
-      <div class="row">
-        <div class="col-xs-4">ジャンル</div>
-        <div class="col-xs-8"><%= f.collection_select :genre_id, @genres, :id, :name, include_blank: "選択して下さい" %></div>
-      </div>
-      <div class="row">
-        <div class="col-xs-4">税込価格（税抜価格）</div>
-        <div class="col-xs-8"><%= f.text_field :price %></div>
-      </div>
-      <div class="row">
-        <div class="col-xs-4">販売ステータス</div>
-        <div class="col-xs-8"><%= f.select :is_active, [["販売中", "true"], ["未販売", "false"]], include_blank: "選択して下さい" %></div>
-        <div class="switch"><%= f.submit "編集を保存する", class:"btn btn-danger" %></div>
-      </div>
+    <div class=col-xs-3>
+      <td>（性）<%= f.text_field :last_name %></td></br>
+      <td>（セイ）<%= f.text_field :last_name_kana %></td></br>
+      <td><%= f.text_field :email %></td></br>
+      <td><%= f.text_field :postal_code %></td></br>
+      <td><%= f.text_field :address %></td></br>
+      <td><%= f.text_field :telephone_number %></td></br>
+      <td><%= f.text_field :encrypted_password %></td></br>
+      <td><%= f.text_field :encrypted_password %></td></br>
     </div>
-    <% end %>
-
+    <div class=col-xs-3>
+      <td>（名）<%= f.text_field :first_name %></td></br>
+      <td>（メイ）<%= f.text_field :first_name_kana %></td></br>
+    </div>
   </div>
+  <div class="switch"><%= f.submit "新規登録", class:"btn btn-danger" %></div>
+  <% end %>
 </div>

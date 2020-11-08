@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :customers
   devise_for :admins, class_name: "Admin::Admin"
-  devise_for :customers, class_name: "Public::Customer"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   get 'homes/about' => 'homes#about'
@@ -15,12 +15,13 @@ Rails.application.routes.draw do
   resources :items, except: [:destroy]
   end
 
-  scope 'admin' do
-    resources :customers, only: [:index, :create, :edit, :update]
+  namespace 'admins' do
+    resources :customers, only: [:index, :create, :show, :edit, :update]
+    resources :items
   end
 
   scope 'public' do
-    resources :customers, only: [:new, :create]
+    resources :customers, only: [:new, :create, :show, :edit, :update]
   end
 
   scope 'admin' do

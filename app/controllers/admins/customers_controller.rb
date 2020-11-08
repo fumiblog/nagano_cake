@@ -1,4 +1,4 @@
-class CustomersController < ApplicationController
+class Admins::CustomersController < ApplicationController
 
   def new
     @customer = Customer.new
@@ -25,7 +25,6 @@ class CustomersController < ApplicationController
   def update
     @customer = Customer.find(params[:id])
     @customer.update(customer_params)
-    redirect_to admins_customer_path
   end
 
   private

@@ -1,0 +1,19 @@
+<div class="container">
+  <header>
+    <div class="function_title">
+      <h2>マイページ</h2>
+    </div>
+  </header>
+  
+  <table class="table table-bordered">
+    <%= form_with model: @customer, local: true do |f| %>
+    <tr><td>名前</td><td><%= f.text_field :last_name %><%= f.text_field :first_name %></td></tr>
+    <tr><td>フリガナ</td><td><%= f.text_field :last_name_kana %><%= f.text_field :first_name_kana %></td></tr>
+    <tr><td>郵便番号</td><td><%= f.text_field :postal_code %></td></tr>
+    <tr><td>住所</td><td><%= f.text_field :address %></td></tr>
+    <tr><td>電話番号</td><td><%= f.text_field :telephone_number %></td></tr>
+    <tr><td>メールアドレス</td><td><%= f.text_field :email %></td></tr>
+  </table>
+  <div class="switch"><%= f.submit "新規登録", class:"btn btn-danger" %></div>
+  <% end %>
+</div>

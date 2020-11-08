@@ -1,0 +1,27 @@
+<div class="container">
+  <header>
+    <div class="function_title">
+      <h2><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報詳細</h2>
+    </div>
+  </header>
+  <%= form_with model: @customer, local: true do |f| %>
+  <table class="table table-striped">
+
+    <tr><td>顧客ID</td><td><%= @customer.id %><% if @customer.is_deleted %>
+        <div class="btn btn-success">有効会員</div>
+      <% else %>
+        <div class="btn btn-danger">退会済み会員</div>
+      <% end %>
+      </td>
+    </tr>
+    <tr><td>名前</td><td><%= @customer.last_name %><%= @customer.first_name %></td></tr>
+    <tr><td>フリガナ</td><td><%= @customer.last_name_kana %><%= @customer.first_name_kana %></td></tr>
+    <tr><td>郵便番号</td><td><%= @customer.postal_code %></td></tr>
+    <tr><td>住所</td><td><%= @customer.address %></td></tr>
+    <tr><td>電話番号</td><td><%= @customer.telephone_number %></td></tr>
+    <tr><td>メールアドレス</td><td><%= @customer.email %></td></tr>
+  </table>
+  <div class="switch_left"><%= link_to "編集する", edit_admins_customer_path(@customer.id), class:"btn btn-primary" %></div>
+  <% end %>
+
+</div>

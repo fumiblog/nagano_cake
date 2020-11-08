@@ -5,8 +5,9 @@
         <h2>商品新規登録</h2>
       </div>
     </header>
+    <%= form_with model:@item, local:true do |f| %>
     <div class="col-xs-5">
-      <%= form_with model:@item, local:true do |f| %>
+
 
       <div class="form-group has-icon">
         <%= attachment_image_tag @item, :image, format: 'jpg', fallback: "no_image.jpg", size: "200x200" %>
