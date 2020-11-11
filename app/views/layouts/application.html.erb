@@ -18,8 +18,8 @@
         <nav>
           <ul class="nav navbar-nav navbar-right">
             <li><%= link_to "TOP", public_homes_top_path, {class: "glyphicon glyphicon-home home"} %></li>
-            <li><%= link_to "会員一覧", customers_path, {class: "glyphicon glyphicon-user user"} %></li>
-            <li><%= link_to "注文一覧", orders_path, {class: "glyphicon glyphicon-book book"} %></li>
+            <li><%= link_to "会員一覧", public_homes_top_path, {class: "glyphicon glyphicon-user user"} %></li>
+            <li><%= link_to "サインアップ", new_customer_registration_path, {class: "glyphicon glyphicon-book book"} %></li>
             <li><%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "glyphicon glyphicon-log-out log-out" %></li>
           </ul>
         </nav>
