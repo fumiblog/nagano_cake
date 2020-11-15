@@ -1,25 +1,37 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-3">
-      <% @genres.each do |genre| %>
-      <div>ジャンル検索</div>
-      
-      
+      <h3>ジャンル検索</h3>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>ジャンル</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @genres.each do |genre| %>
+          <tr>
+            <td><%= genre.name %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
     <div class="col-xs-9">
-      <h2>
-        <% if 
-      </h2>
-      <% @items.each do |item| %>
-      <div class="form-group has-icon">
-        <%= attachment_image_tag item, :image, format: 'png', fallback: "no_image.jpg", size: "100x100" %>
+      <h3>商品一覧</h3>
+      
+      <div class="row1">
+        <% @items.each do |item| %>
+          <div class="col-4">
+            <P class="form-group has-icon">
+              <%= attachment_image_tag item, :image, format: 'png', fallback: "no_image.jpg", size: "150x150" %>
+            </p>
+            <p class="name"><%= item.name %></p>
+            <p class="price"><%= (item.price*1.1).floor %>円</p>
+          </div>
+        </div>
       </div>
-      <div class="name"><%= @item.name %></div>
-      <div class="price"><%= (@item.price*1.1).floor %>円</div>
-
-      <div class="switch_right"><%= link_to "編集する", edit_admins_item_path(@item.id), class:"btn btn-primary" %></div>
       <% end %>
     </div>
   </div>
-  
 </div>

@@ -13,10 +13,11 @@
     <header class="navbar navbar-fixed-top navbar-inverse">
       <div class="container">
         <nav class="nav navbar-nav navbar-left">
-          <span class="title">長野ケーキ製作所</br>Nagano CakeCreation place</span>
+          <span class="title">ながのケーキ製作所</br>Nagano CakeCreation place</span>
         </nav>
         <nav>
           <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "作成中", public_homes_top2_path, {class: "glyphicon glyphicon-flash flash"} %></li>
             <li><%= link_to "TOP", public_homes_top_path, {class: "glyphicon glyphicon-home home"} %></li>
             <li><%= link_to "会員一覧", public_homes_top_path, {class: "glyphicon glyphicon-user user"} %></li>
             <li><%= link_to "サインアップ", new_customer_registration_path, {class: "glyphicon glyphicon-book book"} %></li>

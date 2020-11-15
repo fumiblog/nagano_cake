@@ -5,6 +5,9 @@ Rails.application.routes.draw do
 
   get 'homes/about' => 'homes#about'
   get 'public/homes/top' => 'homes#top'
+  get 'public/homes/top2' => 'homes#top2'
+
+  root 'homes#top2'
 
 
   # scope 'admin' do

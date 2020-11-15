@@ -34,7 +34,7 @@ class Admins::ItemsController < ApplicationController
     # binding.pry
     @item.update(item_params)
     # binding.pry
-    redirect_to admins_item_path
+    redirect_to admins_items_path
   end
 
   private

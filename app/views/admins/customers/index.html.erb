@@ -20,9 +20,9 @@
               <td><%= customer.last_name %><%= customer.first_name %></td>
               <td><%= customer.email %></td>
               <td><% if customer.is_deleted %>
-              有効会員
+              退会済み
               <% else %>
-              退会済み会員
+              有効会員
               <% end %>
               </td>
             </tr>
