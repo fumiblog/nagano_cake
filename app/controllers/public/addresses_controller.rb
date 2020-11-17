@@ -22,7 +22,7 @@ class Public::AddressesController < ApplicationController
     @address.customer_id = current_customer.id
     # binding.pry
     @address.save
-    redirect_to public_address_path(current_customer.idm)
+    redirect_to public_address_path(current_customer.id)
   end
 
   def edit
@@ -37,6 +37,10 @@ class Public::AddressesController < ApplicationController
   end
 
   def destroy
+    @address = Address.find(params[:id])
+  # if @address.user_id == current_user.id
+    address.destroy 
+  # end
   end
 
   private

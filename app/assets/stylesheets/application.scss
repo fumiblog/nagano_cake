@@ -17,7 +17,7 @@
 @import "bootstrap";
 
 .row {
-  margin: 50px;
+  margin: 100px;
 }
 
 .title {
@@ -35,4 +35,8 @@ thead {
 .field {
  height: 50px;
  margin-top: 20px;
+}
+
+.current_user {
+  color: white;
 }

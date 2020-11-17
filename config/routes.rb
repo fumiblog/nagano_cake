@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'homes/about' => 'homes#about'
   get 'public/homes/top' => 'homes#top'
   get 'public/homes/top2' => 'homes#top2'
+  # post 'public/cart_items' => 'cart_items#add_item'
 
   root 'homes#top2'
 
@@ -27,7 +28,7 @@ Rails.application.routes.draw do
   namespace 'public' do
     resources :customers, only: [:new, :create, :show, :edit, :update]
     resources :addresses, only: [:index, :show, :create, :edit, :update, :destroy]
-    resources :cart_items, only: [:index, :update, :create, :destroy]
+    resources :cart_items, only: [:index, :update, :create, :destroy, :show]
     resources :items, only: [:index, :show]
   end
 

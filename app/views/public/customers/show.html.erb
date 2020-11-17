@@ -18,7 +18,7 @@
     <tr><td>メールアドレス</td><td><%= @customer.email %></td></tr>
 
   </table>
-  <div>配送先　<%= link_to "一覧を見る", public_address_path(@customer.id), class:"btn btn-success"%></div>
+  <div>配送先　<%= link_to "一覧を見る", public_address_path(current_customer.id), class:"btn btn-success"%></div>
   <%= link_to "編集する", edit_public_customer_path(@customer.id), class:"btn btn-success"%>
 
   <% end %>
