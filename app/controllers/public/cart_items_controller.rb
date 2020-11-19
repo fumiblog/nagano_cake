@@ -1,13 +1,14 @@
 class Public::CartItemsController < ApplicationController
 
-  before_action :set_line_item, only: [:add_item, :destroy]
-  before_action :set_user
-  before_action :set_cart
+  # before_action :set_line_item, only: [:add_item, :destroy]
+  # before_action :set_user
+  # before_action :set_cart
+  # before_filter :authenticate_customer!
 
   def index
     # binding.pry
-    @cart_items = CartItem.all
-    # @item = Item.find(params)
+    @cart_items = current_customer.cart_items
+    # @item = Item.find(params[:item_id])
     # binding.pry
   end
 
@@ -16,22 +17,23 @@ class Public::CartItemsController < ApplicationController
     @cart_item = CartItem.find(params[:id])
   end
 
-  def add_item
-    # binding.pry
-    @line_item = @cart.line_items.build(product_id: params[:product_id]) if @line_item.blank?
-    @line_item.quantity += params[:quantity].to_i
-    if @line_item.save
-      redirect_to current_cart
-    else
-      redirect_to controller: "products", action: "show"
-    end
-  end
+  # def add_item
+  #   # binding.pry
+  #   @line_item = @cart.line_items.build(product_id: params[:product_id]) if @line_item.blank?
+  #   @line_item.quantity += params[:quantity].to_i
+  #   if @line_item.save
+  #     redirect_to current_cart
+  #   else
+  #     redirect_to controller: "products", action: "show"
+  #   end
+  # end
 
   def create
       # binding.pry
       @cart = current_cart
       # item = Item.find(params[:item_id])
       @cart_item = CartItem.new(cart_item_params)
+      # binding.pry
       @cart_item.customer_id = current_customer.id
       # binding.pry
       @cart_item.save
@@ -47,19 +49,27 @@ class Public::CartItemsController < ApplicationController
     end
 
   def destroy
-    @cart.destroy
-    redirect_to current_cart
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.destroy
+    redirect_to public_cart_items_path
   end
 
-  private
-  def set_user
-    @user = current_customer
-  end
-
-  def set_line_item
+  def destroy_all
+    @cart_items = current_customer.cart_items
     # binding.pry
-    @line_item = current_cart.line_items.find_by(product_id: params[:product_id])
+    @cart_items.destroy_all
+    redirect_to public_cart_items_path
   end
+
+  # private
+  # def set_user
+  #   @user = current_customer
+  # end
+
+  # def set_line_item
+  #   # binding.pry
+  #   @line_item = current_cart.line_items.find_by(product_id: params[:product_id])
+  # end
 
   def set_cart
     @cart = current_cart

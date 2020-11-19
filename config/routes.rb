@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   root 'homes#top2'
 
 
+
+
   # scope 'admin' do
   #   resources :genres, only: [:index, :create, :edit, :update]
   # end
@@ -26,10 +28,14 @@ Rails.application.routes.draw do
   end
 
   namespace 'public' do
+    resources :items, only: [:index, :show]
     resources :customers, only: [:new, :create, :show, :edit, :update]
     resources :addresses, only: [:index, :show, :create, :edit, :update, :destroy]
-    resources :cart_items, only: [:index, :update, :create, :destroy, :show]
-    resources :items, only: [:index, :show]
+    resources :cart_items, only: [:index, :update, :create, :destroy, :show] do
+      collection do
+        delete 'destroy_all'
+      end
+    end
   end
 
   get 'public/customers/unsubscribe/:id' => 'public/customers#unsubscribe', as: 'customers_unsubscribe'

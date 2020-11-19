@@ -5,10 +5,12 @@ class ApplicationController < ActionController::Base
   def current_cart
     # binding.pry
     CartItem.find(session[:cart_item_id])
+    # binding.pry
     
     
   rescue ActiveRecord::RecordNotFound
     cart_item = CartItem.create
+    # binding.pry
     session[:cart_item_id] = cart_item.id
     cart_item
     

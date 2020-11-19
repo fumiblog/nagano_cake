@@ -11,11 +11,11 @@
 
   <body>
     <header class="navbar navbar-fixed-top navbar-inverse">
-      <div class="container">
+      
         <nav class="nav navbar-nav navbar-left">
           <span class="title">ながのケーキ製作所</br>Nagano CakeCreation place</span>
           <% if customer_signed_in? %>
-            <span class="current_user">　　<%= current_customer.last_name %>様、ようこそながのケーキへ！</span>
+            <span class="current_user">　　<%= current_customer.last_name %><%= current_customer.first_name %>様、ようこそながのケーキへ！</span>
           <% end %>
         </nav>
        <nav>
@@ -41,19 +41,17 @@
 
           </ul>
         </nav>
-      </div>
+      
     </header>
 
     <%= yield %>
 
     <footer>
-      <div class="container">
-      	<div class="row">
+
         	<div class="col-xs-3 col-xs-offset-9">
         		<p>CopyRight fumiblog.inc</p>
         	</div>
-        </div>
-      </div>
+
     </footer>
   </body>
 </html>

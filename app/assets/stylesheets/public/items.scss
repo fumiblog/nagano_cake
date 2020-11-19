@@ -4,8 +4,19 @@
 
 .row{
   margin-top: 60px;
+  
 }
 
 .container {
   display: flex;
+}
+
+.row {
+  width: 1200px;
+}
+
+.card-deck {
+  display: inline-block;
+  height: 700px;
+  width: auto;
 }
