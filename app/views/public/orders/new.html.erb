@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <h2 class"hyodai">注文情報入力</h2>
+    <%= form_with model: @order, url: public_orders_confirm_path, local: true do |f| %>
+    <div class="howtoorder">支払方法</div></br>
+    <div class="payment_method">
+      <%= f.radio_button :payment_method, 0 %>　クレジットカード</br></br>
+      <%= f.radio_button :payment_method, 1 %>　現金振込</br></br>
+    </div>
+    <div class="howtoorder">配送先</div></br>
+    <div class="shippingaddress">
+      <%= radio_button_tag :flag, 0 %>
+      ご自身のご住所</br>
+      <%= current_customer.postal_code %>
+      <%= current_customer.address %>
+      <%= current_customer.last_name %>
+      <%= current_customer.first_name %>　様宛</br></br>
+      <%= radio_button_tag :flag, 1 %>
+      <%= select_tag 'address_id', options_from_collection_for_select(@addresses, :id, :full_address, 1) %></br></br>
+      <%= radio_button_tag :flag, 2 %>
+      新しいお届け先</br>
+      </br>
+      郵便番号（ハイフン無し）<%= f.text_field :postal_code %></br>
+      　　住　　　　　　所　　<%= f.text_field :address %></br>
+      　　宛　　　　　　名　　<%= f.text_field :name %></br>
+
+  </div>
+  <%= f.submit "確認画面に進む", class: "btn btn-primary" %>
+  <% end %>
+</div>

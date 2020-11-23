@@ -5,7 +5,7 @@
     </div>
   </header>
   <%= form_with model: @customer, url: public_customer_path, local: true do |f| %>
-  <h4>登録情報</h4><%= link_to "編集する", edit_public_customer_path(@customer.id), class:"btn btn-success"%>
+  <h4 class="title_update">登録情報</h4><%= link_to "編集する", edit_public_customer_path(@customer.id), class:"btn btn-success"%>
   <%= link_to "パスワードを変更する", new_customer_password_path(@customer.id), class:"btn btn-danger"%>
 
   <table class="table table-hober">

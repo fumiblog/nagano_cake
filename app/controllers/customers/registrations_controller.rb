@@ -59,4 +59,21 @@ class Customers::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  def new
+    @customer = Customer.new
+  end
+
+  def create
+    @customer = Csutomer.new(customer_pamams)
+    @customer.save
+    redirect_to root
+  end
+
+  private
+
+  def customer_pamams
+    params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :postal_code, :address, :telephone_number, :is_deleted)
+  end
+
 end

@@ -29,8 +29,15 @@ Rails.application.routes.draw do
 
   namespace 'public' do
     resources :items, only: [:index, :show]
-    resources :customers, only: [:new, :create, :show, :edit, :update]
+    resources :customers, only: [:new, :create, :show, :edit, :update] do
+      collection do
+        patch :toggle_status
+      end
+    end
     resources :addresses, only: [:index, :show, :create, :edit, :update, :destroy]
+    resources :orders, only: [:index, :show, :new, :create]
+    post "orders/confirm" => "orders#confirm"
+    get "orders/complete" => "orders#complete"
     resources :cart_items, only: [:index, :update, :create, :destroy, :show] do
       collection do
         delete 'destroy_all'
@@ -43,8 +50,10 @@ Rails.application.routes.draw do
   scope 'admin' do
     resources :orders, only: [:index, :show, :update]
   end
+  
+  
 
-  resources :orders, only: [:index, :show, :new, :create]
+
 
   # get 'orders/new' => 'orders#new'
   post 'orders/comfirm' => 'orders#comfirm'

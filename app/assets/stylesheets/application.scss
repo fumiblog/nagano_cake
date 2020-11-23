@@ -24,9 +24,10 @@
   color: gray;
 }
 
-.function_title {
-  background-color: orange;
+.title_update {
+  margin-top: 100px;
 }
+
 
 thead {
   background-color: lightgray;
@@ -39,4 +40,50 @@ thead {
 
 .current_user {
   color: white;
+}
+
+.nyuryokuhe {
+  text-align: center;
+}
+
+.howtoorder {
+  font-size: 18px;
+}
+
+.payment_method {
+  margin-left: 20px;
+}
+
+.shippingaddress {
+  margin-left: 20px;
+}
+
+.price {
+  text-align: right;
+}
+
+th {
+  text-align: center;
+}
+
+.function_taikai {
+  margin-top: 100px;
+  text-align: center;
+}
+
+.order_basic {
+  font-size: 18px;
+}
+
+.kakutei {
+  margin-top: 100px;
+  text-align: center;
+}
+
+.payment {
+  font-size: 18px;
+}
+
+.order_basic {
+  font-size: 18px;
 }

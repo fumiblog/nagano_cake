@@ -31,7 +31,7 @@
             <p class="name"><%= @item.name %></p>
             <p class="intro"><%= @item.introduction %></p>
             <p class="price"><%= (@item.price*1.1).floor %>円</p>
-            <p class="quantity">
+            <p class="amount">
               個数：
               <%= f.select "amount", {'1': 1, '2': 2}, { include_blank: '選択してください'} %>
             </p>

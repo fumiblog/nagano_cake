@@ -1,8 +1,14 @@
 class Public::ItemsController < ApplicationController
 
   def index
-    @items = Item.all
     @genres = Genre.all
+    @items = Item.all
+    # binding.pry
+    # if genre_id?
+    #   @items = genre_id.items
+    # else
+    #   @items = Item.all
+    # end
   end
 
   def edit

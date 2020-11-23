@@ -1,5 +1,5 @@
 class Public::CustomersController < ApplicationController
-  
+
   def new
     @customer = Customer.new
     # binding.pry
@@ -15,7 +15,7 @@ class Public::CustomersController < ApplicationController
   def index
     @customers = Customer.all
   end
-  
+
   def show
     # binding.pry
     @customer = Customer.find(params[:id])
@@ -33,6 +33,26 @@ class Public::CustomersController < ApplicationController
     # binding.pry
     redirect_to public_customer_path(@customer.id)
   end
+  
+ 
+
+
+
+  def unsubscribe
+    # binding.pry
+    @customer = Customer.find(params[:id])
+    @customer.is_deleted == true
+    # @customer.is_deleted.toggle_status!
+    # redirect_to root_path
+  end
+
+  # def toggle_status!
+  #   if true?
+  #     "false"
+  #   else
+  #     "true"
+  #   end
+  # end
 
   private
   def customer_params
@@ -40,5 +60,5 @@ class Public::CustomersController < ApplicationController
   end
 end
 
-  
+
 

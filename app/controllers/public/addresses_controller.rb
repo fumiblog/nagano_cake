@@ -1,7 +1,7 @@
 class Public::AddressesController < ApplicationController
 
   def index
-    @addresses = Address.all
+    @addresses = current_customer.addresses
     @address = Address.find(params[:id])
   end
 
@@ -9,7 +9,7 @@ class Public::AddressesController < ApplicationController
     # binding.pry
     @address = Address.new
     # bindingpara.pry
-    @addresses = Address.all
+    @addresses = current_customer.addresses
   end
 
   def new
@@ -38,10 +38,14 @@ class Public::AddressesController < ApplicationController
 
   def destroy
     @address = Address.find(params[:id])
-  # if @address.user_id == current_user.id
-    address.destroy 
+    @address.destroy 
+    redirect_to public_address_path
   # end
   end
+  
+ 
+  
+  
 
   private
   def params_address

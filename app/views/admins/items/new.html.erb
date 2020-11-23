@@ -20,7 +20,7 @@
         <tr class="box"><td>税込価格（税抜価格）</td><td><%= f.text_field :price %></td></tr>
         <tr class="box"><td>販売ステータス</td><td><%= f.select :is_active, [["販売中", "true"], ["計画中", "false"]], include_blank: "選択して下さい" %></td></tr>
       </table>
-      <div class="switch_right"><%= f.submit "新規登録",  class:"btn btn-primary" %></div>
+      <div class="switch_right"><%= f.submit "新規登録" %></div>
       <% end %>
     </div>
   </div>

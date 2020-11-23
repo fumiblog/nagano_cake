@@ -21,7 +21,7 @@
             <tr>
               <td><%= item.id %></td>
               <td><%= link_to item.name, admins_item_path(item.id) %></td>
-              <td><%= item.price %></td>
+              <td class="price"><%= item.price.to_s(:delimited) %></td>
               <td><%= item.genre.name %></td>
               <td>
                 <% if item.is_active %>

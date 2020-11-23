@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs">
+      <div class="function_title">
+        <h2>注文情報確認</h2>
+      </div>
+      <table class="table table-striped">
+        <thead class="head_data">
+          <tr>
+            <th></th>
+            <th>商品名</th>
+            <th>税込価格</th>
+            <th>数量</th>
+            <th>小計</th>
+
+          </tr>
+        </thead>
+        <tbody class="cart_data">
+          <% @sum = 0 %>
+          <% current_customer.cart_items.each do |cart| %>
+          <tr>
+            <td><%= attachment_image_tag @item, :image, format: 'png', fallback: "no_image.jpg", size: "40x40" %></td>
+            <td><%= cart.item.name %></td>
+            <td class="price"><%= (cart.item.price*1.1.floor).to_s(:delimited) %></td>
+            <td class="price"><%= cart.amount.to_s(:delimited) %> </td>
+            <td class="price"><%= (cart.amount*(cart.item.price*1.1.floor)).to_s(:delimited) %></td>
+          </tr>
+          <% @sum += cart.amount*(cart.item.price*1.1.floor) %>
+          <% end %>
+          </tbody>
+        </table>
+
+        <div class="payment">
+          送　　料　¥800</br>
+          商品合計　¥<%= @sum %></br>
+          請求金額　¥<%= @sum + 800 %></br></br>
+        </div>
+      </div>
+
+      <div class="order_basic">
+        <%= form_with model: @order, url: public_orders_path, local: true do |f| %>
+        <div>
+          お支払い方法：
+          <% if @order.payment_method == "クレジットカード" %>
+            クレジットカード
+          <% else %>
+            現金振込
+          <% end %>
+        </div></br>
+        <% if @flag == '0' %>
+          お届け先：<%= current_customer.postal_code %>
+          <%= current_customer.address %>
+          <%= current_customer.last_name %>
+          <%= current_customer.first_name %>
+        <% elsif @flag == '1' %>
+          お届け先：<%= @address.postal_code %>　<%= @address.address %>　<%= @address.name %>
+        <% else %>
+          お届け先：<%= @order.postal_code %>　<%= @order.address %>　<%= @order.name %>
+        <% end %>
+      </div></br
+      <div class="nyuryokuhe">
+        <%= f.submit "注文を確定する", class: "btn btn-success" %>
+      </div>
+      <% end %>
+    </div>
+  </div>
