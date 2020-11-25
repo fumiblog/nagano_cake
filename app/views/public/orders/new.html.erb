@@ -1,11 +1,11 @@
 <div class="container">
   <div class="row">
     <h2 class"hyodai">注文情報入力</h2>
-    <%= form_with model: @order, url: public_orders_confirm_path, local: true do |f| %>
+    <%= form_with model: @order, url: confirm_public_orders_path, local: true do |f| %>
     <div class="howtoorder">支払方法</div></br>
     <div class="payment_method">
-      <%= f.radio_button :payment_method, 0 %>　クレジットカード</br></br>
-      <%= f.radio_button :payment_method, 1 %>　現金振込</br></br>
+      <%= f.radio_button :payment_method, :credit_card %>　クレジットカード</br></br>
+      <%= f.radio_button :payment_method, :bank %>　現金振込</br></br>
     </div>
     <div class="howtoorder">配送先</div></br>
     <div class="shippingaddress">
