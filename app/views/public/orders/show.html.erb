@@ -2,10 +2,17 @@
   <div class="row">
     <div class="col-xs">
       <div class="function_title">
-        <h2>注文情報確認</h2>
+        <h2>注文履歴詳細</h2>
       </div>
+      
       <div class="order-basic">
-        <%= form_with model: @order, url: public_orders_path, local: true do |f| %>
+        注文情報
+        <div>
+          <div>注文日:<%= @order.updated_at.strftime('%Y/%m/%d') %></div>
+          <div>配送先:<%= @order.postal_code %></br><%= @order.address %></br><%= @order.name %></div>
+          <div>支払方法:<%= @order.payment_method %></div>
+          <div>ステータス:<%= @order.status %></div>
+        </div>
         
 
       </div>
@@ -15,33 +22,32 @@
         <thead class="head_data">
           <tr>
             <th></th>
-            <th>商品名</th>
+            <th>商品</th>
             <th>税込価格</th>
             <th>数量</th>
             <th>小計</th>
 
           </tr>
         </thead>
-        <tbody class="cart_data">
-          <% @sum = 0 %>
-          <% @cart_items.each do |cart| %>
+        <tbody class="history">
+
+          <% @order_details.each do |f| %>
           <tr>
-            <td><%= attachment_image_tag @item, :image, format: 'png', fallback: "no_image.jpg", size: "40x40" %></td>
-            <td><%= cart.item.name %></td>
-            <td class="price"><%= (cart.item.price*1.1.floor).to_s(:delimited) %></td>
-            <td class="price"><%= cart.amount.to_s(:delimited) %> </td>
-            <td class="price"><%= (cart.amount*(cart.item.price*1.1.floor)).to_s(:delimited) %></td>
+            <td><%=  %></td>
+            <td><%= f.item.name %></td>
+            <td><%= f.price %></td>
+            <td><%= f.amount %></td>
+            <td><%= f.price * f.amount %> </td>
+
 
           </tr>
-          <% @sum += cart.amount*(cart.item.price*1.1.floor) %>
+
           <% end %>
           </tbody>
         </table>
 
-          合計金額　¥<%= @sum(:delimited) %>
+
       </div>
-      <div class="nyuryokuhe">
-        <%= link_to "情報入力に進む", new_public_order_path, :style => "font-size: 20px", class: "btn btn-success" %>
-      </div>
+
     </div>
   </div>

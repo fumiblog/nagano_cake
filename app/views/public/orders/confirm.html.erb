@@ -21,6 +21,7 @@
           <% current_customer.cart_items.each do |cart| %>
           <tr>
             <td><%= attachment_image_tag @item, :image, format: 'png', fallback: "no_image.jpg", size: "40x40" %></td>
+            
             <td><%= cart.item.name %></td>
             <td class="price"><%= (cart.item.price*1.1.floor).to_s(:delimited) %></td>
             <td class="price"><%= cart.amount.to_s(:delimited) %></td>
@@ -50,7 +51,7 @@
           <%= @order.address %><%= f.hidden_field :address, :value => @order.address %>
           <%= @order.name %><%= f.hidden_field :name, :value => @order.name %>
         </div>
-        
+
       </div></br
       <div class="nyuryokuhe">
         <%= f.submit "注文を確定する", class: "btn btn-success" %>
