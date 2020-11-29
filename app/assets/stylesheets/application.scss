@@ -87,3 +87,58 @@ th {
 .order_basic {
   font-size: 18px;
 }
+
+.cakeimage {
+  width: auto;
+  height: 500px;
+  text-align: center;
+  background-image: url(cake.jpg);
+  //color: white;
+  font-size: 20px;
+  opacity: 0.8;
+  // background: rgba(0,0,0, 0.4);
+}
+
+.cakeimage::before{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 550px;
+  background: rgba(0,0,0, 0.4);
+}
+
+.overview {
+  color: white;
+}
+
+.card {
+  margin-top: 40px;
+}
+
+.shortcakeimage {
+  width: auto;
+  height: 600px;
+  background-image: url(shortcake.jpg);
+  opacity: 0.8;
+}
+
+.work {
+  font-size: 18px;
+}
+
+.ordercount {
+  font-size: 30px;
+}
+
+.about {
+  margin-top: 100px;
+  text-align: center;
+}
+
+.promotion {
+  font-size: 20px;
+}
+

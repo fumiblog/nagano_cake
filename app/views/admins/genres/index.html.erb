@@ -23,6 +23,7 @@
               <th>ジャンル</th>
               <th>状態</th>
               <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -36,8 +37,8 @@
                   無効
                 <% end %>
               </td>
-
-              <td><%= link_to "編集する", edit_admins_genre_path(genre.id), class:"btn btn-success" %></td>
+              <td><%= link_to "編集", edit_admins_genre_path(genre.id), class:"btn btn-success" %></td>
+              <td><%= link_to "削除", admins_genre_path(genre.id), method: :delete, data: { confirm: "本当に削除しますか？商品も削除されます！" }, class: "btn btn-danger" %> </td>
             </tr>
             <% end %>
           </tbody>

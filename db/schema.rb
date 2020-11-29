@@ -101,7 +101,7 @@ ActiveRecord::Schema.define(version: 2020_11_26_074758) do
     t.integer "payment_method"
     t.integer "status"
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime ":", null: false
   end
 
   create_table "public_addresses", force: :cascade do |t|

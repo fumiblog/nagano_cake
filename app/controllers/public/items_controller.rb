@@ -21,6 +21,8 @@ class Public::ItemsController < ApplicationController
     @cart_item = CartItem.new
     # binding.pry
   end
+  
+  
 
   private
   def item_params

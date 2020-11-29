@@ -31,7 +31,7 @@ class Public::OrdersController < ApplicationController
     # binding.pry
     # @order_detail = OrderDetail.new(order_detail_params)
     @cart_items = current_customer.cart_items
-   
+
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     @order.status = 0
@@ -49,9 +49,11 @@ class Public::OrdersController < ApplicationController
       @order_detail.save
     end
 
+    # binding.pry@cart_items = current_customer.cart_items
     # binding.pry
-    @order.cart_items.destroy_all
-    
+    @cart_items = current_customer.cart_items
+    @cart_items.destroy_all
+
     redirect_to complete_public_orders_path
   #   respond_to do |format|
   # end
@@ -64,6 +66,8 @@ class Public::OrdersController < ApplicationController
 
   def index
     @orders = current_customer.orders
+    # @order_details = @order.order_details
+    # @order_detail = OrderDetail.find(params[:id])
     # @order_details = order_id.order_details
     # @order_detail = OrderDetail(order_detail_params)
     # @order_detail = OrderDetail.find(params[:id])
@@ -72,7 +76,7 @@ class Public::OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     # binding.pry
-    @order_details = @order.order_details 
+    @order_details = @order.order_details
   end
 
   private

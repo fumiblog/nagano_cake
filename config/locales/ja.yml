@@ -1,0 +1,16 @@
+ja:
+  enums:
+    order:
+      status:
+        nyukinmachi: 入金待ち
+        nyukinkakunin: 入金確認
+        seisakuchu: 製作中
+        hassoujunnbichu: 発送準備
+        hassouzumi: 発送済み
+
+    order_detail:
+      making_status:
+        seissakufuka: 製作不可
+        seisakumachi: 製作待ち
+        seisakuchu: 製作中
+        seisakukanryo: 製作完了

@@ -42,9 +42,11 @@ class Public::CartItemsController < ApplicationController
 
     def update
     # binding.pry
-      @cart = current_cart
-      @item = Item.find(params[:item_id])
-      @cart_item = @cart.line_items.build(good: good)
+      @cart_items = current_customer.cart_items
+      # @item = Item.find(params[:item_id])
+      # @cart_item = @cart.line_items.build(good: good)
+      # binding.pry
+      @cart_item.update(params[:cart_item][:amount])
       redirect_to public_cart_items_path
     end
 

@@ -9,7 +9,7 @@ class Admins::GenresController < ApplicationController
   def create
     # binding.pry
     @genre = Genre.new(genre_params)  #ユーザーが入力した値
-    
+
     @genre.save
     redirect_to admins_genres_path
   end
@@ -22,6 +22,12 @@ class Admins::GenresController < ApplicationController
     @genre = Genre.find(params[:id])
     @genre.update(genre_params)
     # binding.pry
+    redirect_to admins_genres_path
+  end
+
+  def destroy
+    @genre = Genre.find(params[:id])
+    @genre.destroy
     redirect_to admins_genres_path
   end
 

@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs">
+      <div class="function_title">
+        <h2>注文履歴詳細</h2>
+      </div>
+
+      <div class="order-basic">
+        注文情報
+        <div>
+
+          <div>購入者:<%= @order.name %></div>
+          <div>配送先:<%= @order.postal_code %></br><%= @order.address %></br><%= @order.name %></div>
+          <div>支払方法:<%= @order.payment_method %></div>
+          <%= form_with model:@order, url: admins_order_path(@order), local:true do |f| %>
+          <div>ステータス:</div>
+          <%#= f.select :status, {入金待ち: 0, 入金確認: 1, 製作中: 2, 発送準備中: 3, 発送済み: 4} %>
+          <%#= f.select :status, Order.statuses_i18n.invert %>
+          <%= f.select :status, Order.statuses_i18n.keys.map{|k| [I18n.t("enums.order.status.#{k}"), k]} %>
+          <%#= f.select :status, Order.statuses_i18n.keys.map{|k| [I18n.t("Order.statuses_i18n.[k]"), k]} %>
+          <%= f.submit "更新" %>
+          <% end %>
+        </div>
+      </div>
+      <table class="table table-striped">
+        <thead class="head_data">
+          <tr>
+            <th></th>
+            <th>商品</th>
+            <th>税込価格</th>
+            <th>数量</th>
+            <th>小計</th>
+            <th>ステータス</th>
+          </tr>
+        </thead>
+        <tbody class="history">
+
+          <% @order_details.each do |order_detail| %>
+          <tr>
+            <td><%=  %></td>
+            <td><%= order_detail.item.name %></td>
+            <td><%= order_detail.price %></td>
+            <td><%= order_detail.amount %></td>
+            <td><%= order_detail.price * order_detail.amount %> </td>
+            <td>
+              <%= form_with model:order_detail, url: admins_order_detail_path(order_detail.id), local: true do |f| %>
+              <%= f.select :making_status, OrderDetail.making_statuses_i18n.invert %>
+              <%= f.submit "更新" %>
+              <% end %>
+            </td>
+          </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

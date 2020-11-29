@@ -3,6 +3,6 @@ class OrderDetail < ApplicationRecord
   belongs_to :order
   belongs_to :item
 
-  enum maiking_status: {製作不可: 0, 製作待ち: 1, 製作中: 2, 製作完了: 3}
+  enum making_status: {seisakufuka: 0, seisakumachi: 1, seisakuchu: 2, seisakukanryo: 3}
 
 end

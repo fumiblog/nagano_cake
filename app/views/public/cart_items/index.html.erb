@@ -20,16 +20,21 @@
         </thead>
         <tbody class="cart_data">
           <% @sum = 0 %>
-          <% @cart_items.each do |f| %>
+          <% @cart_items.each do |cartitem| %>
           <tr>
             <td><%= attachment_image_tag @item, :image, format: 'png', fallback: "no_image.jpg", size: "40x40" %></td>
-            <td><%= f.item.name %></td>
-            <td class="price"><%= (f.item.price*1.1.floor).to_s(:delimited) %></td>
-            <td class="price"><%= f.amount %> </td>
-            <td class="price"><%= (f.amount*(f.item.price*1.1.floor)).to_s(:delimited) %></td>
-            <td><%= link_to "削除する", public_cart_item_path(f.id), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %></td>
+            <td><%= cartitem.item.name %></td>
+            <td class="price"><%= (cartitem.item.price*1.1.floor).to_s(:delimited) %></td>
+            <td class="price">
+              <%= form_with model: cartitem, url: public_cart_item_path(cartitem.id), local: true do |f| %>
+              <%= f.select :amount, [1, 2, 3, 4, 5, 6] %>
+              <%= f.submit "更新" %>
+              <% end %>
+            </td>
+            <td class="price"><%= (cartitem.amount*(cartitem.item.price*1.1.floor)).to_s(:delimited) %></td>
+            <td><%= link_to "削除する", public_cart_item_path(cartitem.id), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %></td>
           </tr>
-          <div class="total"><% @sum += f.amount*(f.item.price*1.1.floor) %></div>
+          <div class="total"><% @sum += cartitem.amount*(cartitem.item.price*1.1.floor) %></div>
           <% end %>
           <div></div>
         </tbody>

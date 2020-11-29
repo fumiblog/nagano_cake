@@ -14,6 +14,7 @@
               <th>税抜価格</th>
               <th>ジャンル</th>
               <th>ステータス</th>
+              <th></th>
             </tr>
           </thead>
           <tbody class="item_data">
@@ -30,6 +31,7 @@
                   品切中
                 <% end %>
               </td>
+              <td><%= link_to "削除", admins_item_path(item.id), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %></td>
             </tr>
             <% end %>
           </tbody>

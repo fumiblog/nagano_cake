@@ -7,12 +7,12 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    
+
   </head>
 
   <body>
     <header class="navbar navbar-fixed-top navbar-inverse">
-      
+
         <nav class="nav navbar-nav navbar-left">
           <span class="title">ながのケーキ製作所</br>Nagano CakeCreation place</span>re
           <% if customer_signed_in? %>
@@ -23,7 +23,7 @@
           <ul class="nav navbar-nav navbar-right">
             <% if customer_signed_in? && current_customer.admin? %>
               <li><%= link_to "作成中", public_homes_top2_path, {class: "glyphicon glyphicon-flash flash"} %></li>
-              <li><%= link_to "TOP", public_homes_top_path, {class: "glyphicon glyphicon-home home"} %></li>
+              <li><%= link_to "about", public_homes_top_path, {class: "glyphicon glyphicon-home home"} %></li>
               <li><%= link_to "会員一覧", admins_customers_path, {class: "glyphicon glyphicon-book book"} %></li>
               <li><%= link_to "商品一覧", admins_items_path, {class: "glyphicon glyphicon-book book"} %></li>
               <li><%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "glyphicon glyphicon-log-out log-out" %></li>
@@ -42,7 +42,7 @@
 
           </ul>
         </nav>
-      
+
     </header>
 
     <%= yield %>

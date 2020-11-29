@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  namespace :admins do
+    get 'homes/top'
+  end
+  namespace :admins do
+    get 'orders/index'
+    get 'orders/show'
+  end
   devise_for :customers
   devise_for :admins, class_name: "Admin::Admin"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -6,9 +13,10 @@ Rails.application.routes.draw do
   get 'homes/about' => 'homes#about'
   get 'public/homes/top' => 'homes#top'
   get 'public/homes/top2' => 'homes#top2'
+  get 'admins/homes/top' => 'homes#top'
   # post 'public/cart_items' => 'cart_items#add_item'
 
-  root 'homes#top2'
+  root 'homes#top'
 
 
 
@@ -23,8 +31,10 @@ Rails.application.routes.draw do
 
   namespace 'admins' do
     resources :customers, only: [:index, :create, :show, :edit, :update]
-    resources :items, except: [:destroy]
-    resources :genres, only: [:index, :create, :edit, :update]
+    resources :items
+    resources :genres, only: [:index, :create, :edit, :update, :destroy]
+    resources :orders, only: [:index, :show, :update]
+    resources :order_details, only:[:update]
   end
 
   namespace 'public' do
