@@ -8,7 +8,7 @@
     <%= form_with model: @item, url: admins_item_path, local: true do |f| %>
     <div class="col-xs-3">
       <div class="form-group has-icon">
-        <%= attachment_image_tag @item, :image, format: 'png', fallback: "no_image.jpg", size: "200x200" %>
+        <%= attachment_image_tag @item, :image, format: 'jpg', fallback: "no_image.jpg", size: "200x200" %> 
         <%= f.attachment_field :image %>
       </div>
     </div>

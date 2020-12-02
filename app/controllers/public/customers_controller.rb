@@ -1,4 +1,5 @@
 class Public::CustomersController < ApplicationController
+  before_action :authenticate_customer!
 
   def new
     @customer = Customer.new
@@ -33,8 +34,8 @@ class Public::CustomersController < ApplicationController
     # binding.pry
     redirect_to public_customer_path(@customer.id)
   end
-  
- 
+
+
 
 
 

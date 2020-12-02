@@ -28,10 +28,10 @@
                 <% if item.is_active %>
                   販売中
                 <% else %>
-                  品切中
+                  計画中
                 <% end %>
               </td>
-              <td><%= link_to "削除", admins_item_path(item.id), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %></td>
+              <td><%#= link_to "削除", admins_item_path(item.id), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %></td>
             </tr>
             <% end %>
           </tbody>

@@ -4,55 +4,50 @@
     <title>NaganoCake</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
   </head>
-
   <body>
     <header class="navbar navbar-fixed-top navbar-inverse">
-
         <nav class="nav navbar-nav navbar-left">
           <span class="title">ながのケーキ製作所</br>Nagano CakeCreation place</span>re
           <% if customer_signed_in? %>
             <span class="current_user">　　<%= current_customer.last_name %><%= current_customer.first_name %>様、ようこそながのケーキへ！</span>
+          <% elsif admin_signed_in? %>
+            <span class="current_user"> お仕事ご苦労様！</span>
+          <% else %>
+            <span class="current_user"> お買い物は、ログインかサインアップして下さい！</span>
           <% end %>
         </nav>
        <nav>
           <ul class="nav navbar-nav navbar-right">
-            <% if customer_signed_in? && current_customer.admin? %>
-              <li><%= link_to "作成中", public_homes_top2_path, {class: "glyphicon glyphicon-flash flash"} %></li>
-              <li><%= link_to "about", public_homes_top_path, {class: "glyphicon glyphicon-home home"} %></li>
-              <li><%= link_to "会員一覧", admins_customers_path, {class: "glyphicon glyphicon-book book"} %></li>
-              <li><%= link_to "商品一覧", admins_items_path, {class: "glyphicon glyphicon-book book"} %></li>
+            <% if customer_signed_in? %>
+              <li><%#= link_to "作成中", public_homes_top2_path, {class: "glyphicon glyphicon-flash flash"} %></li>
+              <li><%= link_to "マイページ", public_customer_path(current_customer), {class: "glyphicon glyphicon-home home"} %></li>
+              <li><%= link_to "商品一覧", public_items_path, {class: "glyphicon glyphicon-book book"} %></li>
+              <li><%= link_to "カート", public_cart_items_path(current_customer), {class: "glyphicon glyphicon-book book"} %></li>
               <li><%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "glyphicon glyphicon-log-out log-out" %></li>
-            <% elsif customer_signed_in? %>
-              <li><%= link_to "作成中", public_homes_top2_path, {class: "glyphicon glyphicon-flash flash"} %></li>
-              <li><%= link_to "商品一覧", public_items_path, {class: "glyphicon glyphicon-flash flash"} %></li>
-              <li><%= link_to "マイページ", public_customer_path(current_customer), {class: "glyphicon glyphicon-flash flash"} %></li>
-              <li><%= link_to "TOP", public_homes_top_path, {class: "glyphicon glyphicon-home home"} %></li>
-              <li><%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "glyphicon glyphicon-log-out log-out" %></li>
+            <% elsif admin_signed_in? %>
+              <li><%#= link_to "作成中", public_homes_top2_path, {class: "glyphicon glyphicon-flash flash"} %></li>
+              <li><%= link_to "商品一覧", admins_items_path, {class: "glyphicon glyphicon-flash flash"} %></li>
+              <li><%= link_to "会員一覧", admins_customers_path, {class: "glyphicon glyphicon-flash flash"} %></li>
+              <li><%= link_to "注文履歴一覧", admins_orders_path, {class: "glyphicon glyphicon-home home"} %></li>
+              <li><%= link_to "ジャンル一覧", admins_genres_path, {class: "glyphicon glyphicon-home home"} %></li>
+              <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "glyphicon glyphicon-log-out log-out" %></li>
             <% else %>
-              <li><%= link_to "作成中", public_homes_top2_path, {class: "glyphicon glyphicon-flash flash"} %></li>
-              <li><%= link_to "TOP", public_homes_top_path, {class: "glyphicon glyphicon-home home"} %></li>
+              <li><%= link_to "about", homes_about_path, {class: "glyphicon glyphicon-flash flash"} %></li>
+              <li><%= link_to "商品一覧", public_items_path, {class: "glyphicon glyphicon-home home"} %></li>
               <li><%= link_to "ログイン", new_customer_session_path, {class: "glyphicon glyphicon-book book"} %></li>
               <li><%= link_to "サインアップ", new_customer_registration_path, {class: "glyphicon glyphicon-book book"} %></li>
             <% end %>
-
           </ul>
         </nav>
-
     </header>
-
     <%= yield %>
-
     <footer>
-
-        	<div class="col-xs-3 col-xs-offset-9">
-        		<p>CopyRight fumiblog.inc</p>
-        	</div>
-
+    	<div class="col-xs-3 col-xs-offset-9">
+    		<p>CopyRight fumiblog.inc</p>
+    	</div>
     </footer>
   </body>
 </html>

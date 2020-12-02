@@ -1,19 +1,83 @@
 class ApplicationController < ActionController::Base
 
+  # if before_action :authenticate_admin!
+  #   def after_sign_in_path_for(resource)
+  #     admins_homes_top_path # ログイン後に遷移するpathを設定
+  #   end
+
+  #   def after_sign_out_path_for(resource)
+  #     new_admin_session_path # ログアウト後に遷移するpathを設定
+  #   end
+  # elsif  before_action :authenticate_customer!
+  #   def after_sign_in_path_for(resource)
+  #     public_items_path # ログイン後に遷移するpathを設定
+  #   end
+
+  #   def after_sign_out_path_for(resource)
+  #     public_items_path # ログアウト後に遷移するpathを設定
+  #   end
+  # else
+  # end
+
+  def after_sign_in_path_for(resource)
+    case resource
+    when Customer
+      public_items_path
+    when Admin
+      admins_homes_top_path
+    end
+  end
+
+  # before_action :authenticate_admin!
+  # def after_sign_out_path_for(resource)
+  #   new_admin_session_path
+  # end
+
+  # before_action :authenticate_customer!
+  # def after_sign_out_path_for(resource)
+  #   root_path
+  # end
+
+  # def after_sign_out_path_for(resource)
+  #   new_admin_session_path
+  # end
+  
+  def after_sign_out_path_for(resource)
+    # byebug
+    case resource
+    when :customer
+      root_path
+    when :admin
+      new_admin_session_path
+    end
+  end
+    
+
+
+
+  # def after_sign_out_path_for(resource_or_scope)
+  #   # byebug
+  #   if resource_or_scope == :admin
+  #     new_admin_session_path
+  #   else
+  #     root_path
+  #   end
+  # end
+
   private
   #セッションの作成
   def current_cart
     # binding.pry
     CartItem.find(session[:cart_item_id])
     # binding.pry
-    
-    
+
+
   rescue ActiveRecord::RecordNotFound
     cart_item = CartItem.create
     # binding.pry
     session[:cart_item_id] = cart_item.id
     cart_item
-    
+
   end
   # def current_cart
   #   # binding.pry
@@ -26,5 +90,7 @@ class ApplicationController < ActionController::Base
   #   # Cart情報を返却
   #   current_cart
   # end
+
+
 
 end
