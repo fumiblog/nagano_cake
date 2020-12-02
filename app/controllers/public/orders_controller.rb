@@ -37,7 +37,7 @@ class Public::OrdersController < ApplicationController
     @order.customer_id = current_customer.id
     @order.status = 0
     @order.shipping_cost = params[:order][:shipping_cost]
-
+    # binding.pry
     @order.save
     # @order_detail.order_id = Order.id
     current_customer.cart_items.each do |f|
