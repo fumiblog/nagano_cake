@@ -5,6 +5,11 @@ Rails.application.routes.draw do
   # }
 
  
+  # devise_for :admins, controllers: {
+  # 	sessions: "admins/sessions",
+  # 	passwords: 'admins/passwords',
+  #   registrations: 'admins/registrations'
+  # }
   devise_for :admins, skip: :all
   devise_scope :admin do
     get 'admins/sign_in' => 'admins/sessions#new', as: 'new_admin_session'
@@ -14,12 +19,12 @@ Rails.application.routes.draw do
 
   devise_for :customers, skip: :all
   devise_scope :customer do
-    get 'customers/sign_in' => 'customers/sessions#new', as: 'new_customer_session'
-    post 'customers/sign_in' => 'customers/sessions#create', as: 'customer_session'
-    delete 'customers/sign_out' => 'customers/sessions#destroy', as: 'destroy_customer_session'
-    get 'customers/sign_up' => 'customers/registrations#new', as: 'new_customer_registration'
-    post 'customers' => 'customers/registrations#create', as: 'customer_registration'
-    get 'customers/password/new' => 'customers/passwords#new', as: 'new_customer_password'
+    get 'customers/sign_in' => 'public/sessions#new', as: 'new_customer_session'
+    post 'customers/sign_in' => 'public/sessions#create', as: 'customer_session'
+    delete 'customers/sign_out' => 'public/sessions#destroy', as: 'destroy_customer_session'
+    get 'customers/sign_up' => 'public/registrations#new', as: 'new_customer_registration'
+    post 'customers' => 'public/registrations#create', as: 'customer_registration'
+    get 'customers/password/new' => 'public/passwords#new', as: 'new_customer_password'
   end
   
 
@@ -33,13 +38,13 @@ Rails.application.routes.draw do
   # devise_for :customers
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  get 'homes/about' => 'homes#about'
-  get 'public/homes/top' => 'homes#top'
-  get 'public/homes/top2' => 'homes#top2'
-  get 'admins/homes/top' => 'homes#top'
+  get 'homes/about' => 'public/homes#about'
+  get 'public/homes/top' => 'public/homes#top'
+  get 'public/homes/top2' => 'public/homes#top2'
+  get 'admins/homes/top' => 'public/homes#top'
   # post 'public/cart_items' => 'cart_items#add_item'
 
-  root 'homes#top'
+  root 'public/homes#top'
 
   namespace 'admins' do
     resources :customers, only: [:index, :create, :show, :edit, :update]

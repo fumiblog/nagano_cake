@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Customers::RegistrationsController < Devise::RegistrationsController
+class Public::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -60,32 +60,6 @@ class Customers::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
 
-  def new
-    @customer = Customer.new
-  end
 
-  def create
-    @customer = Customer.new(customer_pamams)
-    @customer.is_deleted = "false"
-    binding.pry
-    @customer.save
-    redirect_to root_path
-  end
-
-  private
-
-  def customer_pamams
-    params.require(:customer).permit(
-      :last_name,
-      :first_name,
-      :last_name_kana,
-      :first_name_kana,
-      :email,
-      :encrypted_password,
-      :postal_code,
-      :address,
-      :telephone_number,
-      :is_deleted)
-  end
 
 end
