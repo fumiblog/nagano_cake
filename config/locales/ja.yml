@@ -10,7 +10,7 @@ ja:
 
     order_detail:
       making_status:
-        seissakufuka: 製作不可
+        seisakufuka: 製作不可
         seisakumachi: 製作待ち
         seisakuchu: 製作中
         seisakukanryo: 製作完了

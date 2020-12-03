@@ -8,7 +8,7 @@ class Public::CustomersController < ApplicationController
 
   def create
     @customer = Customer.new(customer_params)
-    # bindig.pry
+    @customer.is_deleted = false
     @customer.save
     redirect_to public_customer_path(@customer.id)
   end
@@ -35,9 +35,16 @@ class Public::CustomersController < ApplicationController
     redirect_to public_customer_path(@customer.id)
   end
 
+  def check
+    @customer = Customer.find(params[:id])
+  end
 
-
-
+  def withdrawl
+    @customer = Customer.find(current_customer.id)
+    @customer.update(is_deleted: "Invalid")
+    reset_session
+    redirect_to root_path
+  end
 
   def unsubscribe
     # binding.pry
@@ -57,7 +64,15 @@ class Public::CustomersController < ApplicationController
 
   private
   def customer_params
-    params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :postal_code, :address, :telephone_number, :is_deleted)
+    params.require(:customer).permit(
+      :last_name,:first_name,
+      :last_name_kana,
+      :first_name_kana,
+      :email,
+      :postal_code,
+      :address,
+      :telephone_number,
+      :is_deleted)
   end
 end
 

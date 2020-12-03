@@ -17,9 +17,9 @@
       <tr><td>メールアドレス</td><td><%= f.text_field :email, placeholder: "mailアドレスを入力", style: "border: none", :size => "30*30" %></td></tr>
       <tr>
         <td>会員ステータス</td>
-        <td><%= f.label :is_deleted, :"有効会員" %><%= f.radio_button :is_deleted, :false %>
+        <td><%= f.label :is_deleted, :"有効会員" %><%= f.radio_button :is_deleted, :Abailable %>
         <%= f.label :is_deleted, :"退会済み" %>
-        <%= f.radio_button :is_deleted, :true %></td>
+        <%= f.radio_button :is_deleted, :Invalid %></td>
       </tr>
     </table>
     <div class="switch-left"><%= f.submit "編集を保存する", class:"btn btn-primary" %></div>

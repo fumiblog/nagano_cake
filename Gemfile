@@ -73,3 +73,6 @@ gem 'pry-byebug'
 
 gem 'enum_help'
 gem 'rails-i18n', '~> 5.1'
+
+gem 'hirb'
+gem 'hirb-unicode'

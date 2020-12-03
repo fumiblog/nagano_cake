@@ -3,7 +3,7 @@ class Public::OrdersController < ApplicationController
 
   def new
     @order = Order.new
-    @addresses = Address.all
+    @addresses = current_customer.addresses
 
     # @customer = Customer.find(params[:id])
     # binding.pry
@@ -15,14 +15,17 @@ class Public::OrdersController < ApplicationController
 
     @order = Order.new(order_params)
     @order.payment_method = params[:order][:payment_method]
+    # byebug
     if params[:flag] == '0'
       @order.postal_code = current_customer.postal_code
       @order.address = current_customer.address
       @order.name = current_customer.last_name + current_customer.first_name
     elsif params[:flag] == '1'
-      @order.postal_code = @address.postal_code(params[:address_id])
-      @order.address = @address.address(params[:address_id])
-      @order.name = @address.name(params[:address_id])
+      # byebug
+      @address = Address.find(params[:address_id])
+      @order.postal_code = @address.postal_code
+      @order.address = @address.address
+      @order.name = @address.name
     else
     end
   end

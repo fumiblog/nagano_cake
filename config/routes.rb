@@ -57,10 +57,15 @@ Rails.application.routes.draw do
   namespace 'public' do
     resources :items, only: [:index, :show]
     resources :customers, only: [:new, :create, :show, :edit, :update] do
-      collection do
-        patch :toggle_status
+      member do
+        get 'check'
+        patch 'withdrawl'
       end
     end
+    #   collection do
+    #     patch :toggle_status
+    #   end
+    # end
     resources :addresses, only: [:index, :show, :create, :edit, :update, :destroy]
     resources :orders, only: [:index, :show, :new, :create] do
       collection do

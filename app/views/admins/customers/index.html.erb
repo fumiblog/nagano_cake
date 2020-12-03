@@ -19,7 +19,7 @@
               <td><%= link_to customer.id, edit_admins_customer_path(customer.id) %></td>
               <td><%= customer.last_name %><%= customer.first_name %></td>
               <td><%= customer.email %></td>
-              <td><% if customer.is_deleted %>
+              <td><% if customer.is_deleted == 'Invalid' %>
               退会済み
               <% else %>
               有効会員

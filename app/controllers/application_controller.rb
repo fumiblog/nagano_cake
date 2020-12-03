@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
 
+  
+
   before_action :configure_permitted_parameters , if: :devise_controller?
 
   def after_sign_in_path_for(resource)
@@ -8,6 +10,16 @@ class ApplicationController < ActionController::Base
       public_items_path
     when Admin
       admins_homes_top_path
+    end
+  end
+
+  def after_sign_out_path_for(resource)
+    # byebug
+    case resource
+    when :customer
+      root_path
+    when :admin
+      new_admin_session_path
     end
   end
 
@@ -69,15 +81,7 @@ class ApplicationController < ActionController::Base
   #   new_admin_session_path
   # end
 
-  def after_sign_out_path_for(resource)
-    # byebug
-    case resource
-    when :customer
-      root_path
-    when :admin
-      new_admin_session_path
-    end
-  end
+
 
 
 

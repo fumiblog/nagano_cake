@@ -16,7 +16,7 @@
       <%= current_customer.last_name %>
       <%= current_customer.first_name %>　様宛</br></br>
       <%= radio_button_tag :flag, 1 %>
-      <%= select_tag 'address_id', options_from_collection_for_select(@addresses, :id, :full_address, 1) %></br></br>
+      <%= select_tag :address_id, options_from_collection_for_select(@addresses, :id, :full_address, 1) %></br></br>
       <%= radio_button_tag :flag, 2 %>
       新しいお届け先</br>
       </br>

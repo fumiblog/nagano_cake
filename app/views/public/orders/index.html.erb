@@ -9,15 +9,19 @@
         <th>ステータス</th>
         <th>注文詳細</th>
       </tr>
-      <% @orders.each do |f| %>
-
+      <% @orders.each do |order| %>
+      <%# byebug %>
       <tr>
-        <td><%= f.created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
-        <td><%= f.postal_code %></br><%= f.address %></br><%= f.name %></td>
-        <td><%=  %></td>
-        <td><%= f.total_payment %></td>
-        <td><%= f.status %></td>
-        <td><%= link_to "表示する", public_order_path(f.id), class: "btn btn-primary" %></td>
+        <td><%= order.created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
+        <td><%= order.postal_code %></br><%= order.address %></br><%= order.name %></td>
+        <% order.order_details.each do |detail| %>
+        <td><%= detail.item.name %></td>
+        <% end %>
+        <td><%= order.total_payment %></td>
+        <% order.order_details.each do |detail| %>
+        <td><%= detail.making_status_i18n %></td>
+        <% end %>
+        <td><%= link_to "表示する", public_order_path(order.id), class: "btn btn-primary" %></td>
       </tr>
       <% end %>
 
