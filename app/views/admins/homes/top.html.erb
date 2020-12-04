@@ -1,18 +1,18 @@
 <div class="container">
   <div class="row">
-    <h1>管理者画面</h1></br></br>
+    <h1>管理者画面</h1></br></br></br>
     <div class="ordercount">
       今日の注文数：
       <%#= select count (*) from '@orders' %>
       <%= link_to @orders.count, admins_orders_path %>件
     </div>
-    <%= Date.today %>
+    <%#= Date.today %>
     <div class="work">
-      </br></br>今日は何を創ろうか？</br>
+      <!--</br></br>今日は何を創ろうか？</br>-->
     </div>
     <div class="shortcakeimage_admin">
-      </br></br><%= image_tag "rollpanna", size: "300x300" %>
-      <%= image_tag "baikinman", size: "300x300" %>
+      </br></br><%#= image_tag "rollpanna", size: "300x300" %>
+      <%#= image_tag "baikinman", size: "300x300" %>
     </div>
   </div>
 </div>

@@ -10,7 +10,7 @@ class Admins::ItemsController < ApplicationController
     @item = Item.new(item_params)
     # binding.pry
     @item.save
-    redirect_to admins_items_path
+    redirect_to admins_item_path(@item.id)
   end
 
   def index
@@ -40,6 +40,7 @@ class Admins::ItemsController < ApplicationController
 
   def destroy
     @item = Item.find(params[:id])
+    # byebug
     @item.destroy
     redirect_to admins_items_path
   end

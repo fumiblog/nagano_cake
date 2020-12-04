@@ -12,12 +12,28 @@ class Admins::OrdersController < ApplicationController
 
   def update
     @order = Order.find(params[:id])
-    # binding.pry
-    # @order_details = @order.order_details
-    @order.update(order_params)
-    # @order_detail.update(order_detail_params)
+    # byebug
+    if @order.status == "nyukinkakunin"
+      @order_detail = OrderDetail.find(params[:id])
+      making_status.seisakumachi!
+      @order.update(order_params)
+    end
+    # byebug
     redirect_to admins_order_path(@order)
+    
   end
+
+  # def toggle_status
+  #   # byebug
+  #   @order = Order.find(params[:id])
+  #   if staitus.nyukinkakunin?
+      
+  #     @order_detail.maiking_status.seisakumachi!
+  #     @order.update
+  #   end
+  #   buyb
+  #   redirect_to admins_order_path(@order)
+  # end
 
   private
   def order_params

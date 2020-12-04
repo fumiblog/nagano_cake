@@ -7,6 +7,9 @@ ja:
         seisakuchu: 製作中
         hassoujunnbichu: 発送準備
         hassouzumi: 発送済み
+      payment_method:
+        credit_card: クレジットカード
+        bank: 銀行振込
 
     order_detail:
       making_status:
@@ -14,3 +17,4 @@ ja:
         seisakumachi: 製作待ち
         seisakuchu: 製作中
         seisakukanryo: 製作完了
+

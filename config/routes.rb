@@ -50,7 +50,9 @@ Rails.application.routes.draw do
     resources :customers, only: [:index, :create, :show, :edit, :update]
     resources :items
     resources :genres, only: [:index, :create, :edit, :update, :destroy]
-    resources :orders, only: [:index, :show, :update]
+    resources :orders, only: [:index, :show, :update] do
+      patch :toggle_status
+    end
     resources :order_details, only:[:update]
   end
 
@@ -85,6 +87,8 @@ Rails.application.routes.draw do
   scope 'admin' do
     resources :orders, only: [:index, :show, :update]
   end
+  
+  
 
 
 
