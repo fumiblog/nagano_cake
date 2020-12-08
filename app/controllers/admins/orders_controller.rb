@@ -12,29 +12,20 @@ class Admins::OrdersController < ApplicationController
 
   def update
     @order = Order.find(params[:id])
-    # byebug
-    if @order.status == "nyukinkakunin"
-      @order_detail = OrderDetail.find(params[:id])
-      making_status.seisakumachi!
-      @order.update(order_params)
+    if @order.status == "nyukinmachi" && params[:order][:status] == "nyukinkakunin"
+      @order_detail = OrderDetail.where(order_id: params[:id])
+      @order_detail.each do |od|
+        od.update_attribute(:making_status, "seisakumachi")
+      end
+      @order.update_attribute(:status, "nyukinkakunin")
+    elsif params[:order][:status] == "hassouzumi"
+      @order.update_attribute(:status, "hassouzumi")
+    else
     end
-    # byebug
     redirect_to admins_order_path(@order)
-    
   end
 
-  # def toggle_status
-  #   # byebug
-  #   @order = Order.find(params[:id])
-  #   if staitus.nyukinkakunin?
-      
-  #     @order_detail.maiking_status.seisakumachi!
-  #     @order.update
-  #   end
-  #   buyb
-  #   redirect_to admins_order_path(@order)
-  # end
-
+ 
   private
   def order_params
        params.require(:order).permit(
