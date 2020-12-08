@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row">
+    <header>
+      <div class="function_title">
+        <h2>商品新規登録</h2>
+      </div>
+    </header>
+    <div class="container">
+      <%= form_with model: @item, url: admins_items_path, local: true do |f| %>
+      <div class="col-xs-5">
+        <div class="form-group has-icon">
+          <%= attachment_image_tag @item, :image, format: 'jpg', fallback: "no_image.jpg", size: "200x200" %>
+          <%= f.attachment_field :image %>
+        </div>
+      </div>
+      <div class="col-xs-7">
+        <div class="row">
+          <div class="col-xs-4">商品名</div>
+          <div class="col-xs-8"><%= f.text_field :name %></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-4">商品説明</div>
+          <div class="col-xs-8"><%= f.text_field :introduction %></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-4">ジャンル</div>
+          <div class="col-xs-8"><%= f.collection_select :genre_id, @genres, :id, :name, include_blank: "選択して下さい" %></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-4">税込価格（税抜価格）</div>
+          <div class="col-xs-8"><%= f.text_field :price %></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-4">販売ステータス</div>
+          <div class="col-xs-8"><%= f.select :is_active, [["販売中", "true"], ["未販売", "false"]], include_blank: "選択して下さい" %></div>
+          <div class="switch"><%= f.submit "新規登録", class:"btn btn-danger" %></div>
+        </div>
+  
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

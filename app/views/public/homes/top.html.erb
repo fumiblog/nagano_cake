@@ -1,2 +1,49 @@
-<h1>トップページ作成中です。</h1>
-<h3></br>少々お待ち下さい。</h3>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <h3>ジャンル検索</h3>
+        <table class="table table-striped">
+          <tr>
+            <th>ジャンル</th>
+          </tr>
+          <% @genres.each do |genre| %>
+          <tr>
+            <td><%= link_to genre.name, public_items_path %></td>
+          </tr>
+          <% end %>
+        </table>
+      </div>
+    <div class="col-md-9">
+      <h3></h3>
+      <div class="cakeimage"></br></br></br>
+        <div class="overview">
+          ようこそ、NaganoCakeへ！</br>
+        このサイトは、ケーキ販売のECサイトになります。</br>
+        会員でない方も商品の閲覧はできますが、</br>
+        購入には会員登録が必要になります。
+        </div>
+       </div>
+      <div class="card-deck">
+        <% @order_details.each do |order| %>
+          <div class="col-md-4">
+              <div class="card">
+                <div class="card-img-top">
+                  <%#= form_with model: order, local: true do |f| %>
+                  <%= attachment_image_tag @item, :image, format: 'png', fallback: "no_image.jpg", size: "100x100" %>
+                  <%# end %>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <%= order.item.name %>
+                  </h5>
+                  <p class="price">
+                    <%= (order.item.price*1.1).floor %>円
+                  </p>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+</div

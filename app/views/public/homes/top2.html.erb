@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+
+    <h1>トップページ作成中です。</h1>
+    <h3>少々お待ち下さい。</h3></br></br>
+
+    <div>画面がまだ</div>
+
+    <div><%= link_to "admins_orders_path", admins_orders_path(current_customer) %>　</div>
+    <div><%= link_to "public_cart_items", public_cart_items_path(current_customer) %>　表示できない</div>
+    <div><%= link_to "homes-about", homes_about_path %></div>
+    <div><%= link_to "admins_homes_top", admins_homes_top_path %></div>
+
+    </br></br><div>画面完成</div>
+    <div>admins</div>
+    <div><%= link_to "admins_customers", admins_customers_path %>　OK!</div>
+    <div><%= link_to "admins_items", admins_items_path %>　OK!</div>
+    <div><%= link_to "admins_genres", admins_genres_path %>　OK!</div>
+
+    </br><div>public</div>
+    <div><%= link_to "new_customer_registration", new_customer_registration_path %>　emailとpassword以外保存されていない</div>
+    <div><%= link_to "public_items", public_items_path %>　OK!</div>
+
+    <div><%= link_to "cart_item カート", public_cart_items_path %>　数量のアップデートができない</div>
+    <div>退会処理ができておらず。　マイページ→編集→退会→退会（boolean型trueへ）</div>
+  </div>
+</div>

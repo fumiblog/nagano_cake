@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-8">
+      <div class="function_title">
+        <h3>配送先編集</h3>
+      </div>
+      <%= form_with model: @address, url: public_address_path, local: true do |f| %>
+      <div class="table-striped">
+
+        <th>郵便番号</th>
+        <td><%= f.text_field :postal_code %></td></br>
+        <th>住　　所</th>
+        <td><%= f.text_field :address, :size => "50*50" %></td></br>
+        <th>宛　　名</th>
+        <td><%= f.text_field :name %>　<%= f.submit "編集内容を登録する", class:"btn btn-success" %></td>
+
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

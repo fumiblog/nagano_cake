@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs">
+      <div class="function_title">
+        <h2>注文履歴詳細</h2>
+      </div>
+      <!--<div class="order-basic">-->
+      <div class="table table-striped">
+        注文情報
+        <div>
+          <div>注文日:<%= @order.updated_at.strftime('%Y/%m/%d') %></div>
+          <div>配送先:<%= @order.postal_code %></br><%= @order.address %></br><%= @order.name %></div>
+          <div>支払方法:<%= @order.payment_method_i18n %></div>
+          <div>ステータス:<%= @order.status_i18n %></div>
+        </div>
+      </div>
+      <table class="table table-striped">
+        <thead class="head_data">
+          <tr>
+            <th></th>
+            <th>商品</th>
+            <th>税込価格</th>
+            <th>数量</th>
+            <th>小計</th>
+
+          </tr>
+        </thead>
+        <tbody class="history">
+
+          <% @order_details.each do |f| %>
+          <tr>
+            <td><%=  %></td>
+            <td><%= f.item.name %></td>
+            <td><%= f.price %></td>
+            <td><%= f.amount %></td>
+            <td><%= f.price * f.amount %> </td>
+
+
+          </tr>
+
+          <% end %>
+          </tbody>
+        </table>
+
+
+      </div>
+
+    </div>
+  </div>

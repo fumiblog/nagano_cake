@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <header>
+      <div class="function_title">
+        <h2><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集</h2>
+      </div>
+    </header>
+    <%= form_with model: @customer, url: admins_customer_path, local: true do |f| %>
+    <table class="table table-striped">
+  
+      <tr><td>顧客ID</td><td><%= @customer.id %></td></tr>
+      <tr><td>名前</td><td><%= f.text_field :last_name, placeholder: "姓を入力", style: "border: none" %><%= f.text_field :first_name, placeholder: "名を入力", style: "border: none" %></td></tr>
+      <tr><td>フリガナ</td><td><%= f.text_field :last_name_kana, placeholder: "セイを入力", style: "border: none" %><%= f.text_field :first_name_kana, placeholder: "メイを入力", style: "border: none" %></td></tr>
+      <tr><td>郵便番号</td><td><%= f.text_field :postal_code, placeholder: "〒", style: "border: none" %></td></tr>
+      <tr><td>住所</td><td><%= f.text_field :address, placeholder: "住所を入力", style: "border: none", :size => "50*50" %></td></tr>
+      <tr><td>電話番号</td><td><%= f.text_field :telephone_number, placeholder: "TELを入力", style: "border: none" %></td></tr>
+      <tr><td>メールアドレス</td><td><%= f.text_field :email, placeholder: "mailアドレスを入力", style: "border: none", :size => "30*30" %></td></tr>
+      <tr>
+        <td>会員ステータス</td>
+        <td><%= f.label :is_deleted, :"有効会員" %><%= f.radio_button :is_deleted, :Abailable %>
+        <%= f.label :is_deleted, :"退会済み" %>
+        <%= f.radio_button :is_deleted, :Invalid %></td>
+      </tr>
+    </table>
+    <div class="switch-left"><%= f.submit "編集を保存する", class:"btn btn-primary" %></div>
+    <% end %>
+  </div>
+</div>

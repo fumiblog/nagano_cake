@@ -1,0 +1,27 @@
+<div class="container">
+  <header>
+    <div class="function_title">
+      <h2>商品詳細</h2>
+    </div>
+  </header>
+  <div class="row">
+    <%= form_with model: @item, url: admins_item_path, local: true do |f| %>
+    <div class="col-xs-3">
+      <div class="form-group has-icon">
+        <%= attachment_image_tag @item, :image, format: 'jpg', fallback: "no_image.jpg", size: "200x200" %> 
+        <%= f.attachment_field :image %>
+      </div>
+    </div>
+    <div class="col-xs-9">
+      <table class="table-striped">
+        <tr class="box"><td>商品名</td><td><%= f.text_field :name %></td></tr>
+        <tr class="box"><td>商品説明</td><td><%= f.text_field :introduction %></td></tr>
+        <tr class="box"><td>ジャンル</td><td><%= f.collection_select :genre_id, @genres, :id, :name, include_blank: "選択して下さい" %></td></tr>
+        <tr class="box"><td>税込価格（税抜価格）</td><td><%= f.text_field :price %></td></tr>
+        <tr class="box"><td>販売ステータス</td><td><%= f.select :is_active, [["販売中", "true"], ["計画中", "false"]], include_blank: "選択して下さい" %></td></tr>
+      </table>
+      <div class="switch_left"><%= f.submit "編集を保存する",  class:"btn btn-primary" %></div>
+      <% end %>
+    </div>
+  </div>
+</div>

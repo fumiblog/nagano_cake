@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs">
+      <div class="function_title">
+        <h2>商品一覧</h2>
+      </div>
+
+      <div class="newb"><%= link_to "＋", new_admins_item_path %></div>
+        <table class="table table-striped">
+          <thead class="head_data">
+            <tr>
+              <th>ID</th>
+              <th>商品名</th>
+              <th>税抜価格</th>
+              <th>ジャンル</th>
+              <th>ステータス</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody class="item_data">
+            <% @items.each do |item| %>
+            <tr>
+              <td><%= item.id %></td>
+              <td><%= link_to item.name, admins_item_path(item.id) %></td>
+              <td class="price"><%= item.price.to_s(:delimited) %></td>
+              <td><%= item.genre.name %></td>
+              <td>
+                <% if item.is_active %>
+                  販売中
+                <% else %>
+                  計画中
+                <% end %>
+              </td>
+              <td><%#= link_to "削除", admins_item_path(item.id), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
