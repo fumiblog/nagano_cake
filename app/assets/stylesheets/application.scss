@@ -92,7 +92,7 @@ th {
   width: auto;
   height: 500px;
   text-align: center;
-  background-image: url(cake.jpg);
+  background-image: image-url("cake.jpg");
   //color: white;
   font-size: 20px;
   opacity: 0.8;
@@ -121,7 +121,7 @@ th {
 .shortcakeimage {
   width: auto;
   height: 600px;
-  background-image: url(shortcake.jpg);
+  background-image: image-url("shortcake.jpg");
   opacity: 0.8;
 }
 
