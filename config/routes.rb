@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   #   sessions: 'admins/sessions'
   # }
 
- 
+
   # devise_for :admins, controllers: {
   # 	sessions: "admins/sessions",
   # 	passwords: 'admins/passwords',
@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     post 'customers' => 'public/registrations#create', as: 'customer_registration'
     get 'customers/password/new' => 'public/passwords#new', as: 'new_customer_password'
   end
-  
+
 
   namespace :admins do
     get 'homes/top'
@@ -87,8 +87,8 @@ Rails.application.routes.draw do
   scope 'admin' do
     resources :orders, only: [:index, :show, :update]
   end
-  
-  
+
+
 
 
 
