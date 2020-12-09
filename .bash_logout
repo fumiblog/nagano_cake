@@ -1,0 +1,1 @@
+eval `ssh-agent -k` #現在起動中のssh-agentのプロセスをkillする
